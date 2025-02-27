@@ -4,25 +4,25 @@ import Header from "./Global/Header.jsx";
 import Footer from "./Global/Footer.jsx";
 import HomePage from "./HomePage/Body.jsx";
 import ListingPage from "./ListingPage/Body.jsx";
-import LoginPage from "./LoginPage/Body.jsx";
 import PropertyDetailPage from "./PropertyDetailPage/Body.jsx";
+import LoginPage from "./LoginPage/Body.jsx";
 import RegisterPage from "./RegisterPage/Body.jsx";
 import UserProfilePage from "./UserProfilePage/Body.jsx";
 
 const Body = () => {
 return (
-    <Header />
-      <Router>
+    <Router>
+      <Header />
         <Routes>
             <Route path="/" element={<HomePage />} />
         <Route path="/listingpage" element={<ListingPage />} />
-        <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/propertydetailpage" element={<PropertyDetailPage />} />
+        <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/registerpage" element={<RegisterPage />} />
         <Route path="/userprofilepage" element={<UserProfilePage />} />
         </Routes>
-      </Router>
-    <Footer />
+      <Footer />
+    </Router>
 );
 };
 
