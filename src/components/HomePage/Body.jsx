@@ -1,15 +1,23 @@
 import React from "react";
 
 import SearchBar from "./SearchBar";
-import FeaturedProperties from "./FeaturedProperties";
-import CategoryLinks from "./CategoryLinks";
+import FeaturedPropertiesCarousel from "./FeaturedPropertiesCarousel";
+import QuickSearchFilters from "./QuickSearchFilters";
+import LatestPropertiesSection from "./LatestPropertiesSection";
+import MapIntegrationForProperties from "./MapIntegrationForProperties";
+import UserTestimonialsCarousel from "./UserTestimonialsCarousel";
+import ContactForm from "./ContactForm";
 
 const Body = () => {
   return (
     <div>
       <SearchBar />
-      <FeaturedProperties />
-      <CategoryLinks />
+      <FeaturedPropertiesCarousel />
+      <QuickSearchFilters />
+      <LatestPropertiesSection />
+      <MapIntegrationForProperties />
+      <UserTestimonialsCarousel />
+      <ContactForm />
     </div>
   );
 };
