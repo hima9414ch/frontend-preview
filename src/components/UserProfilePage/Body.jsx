@@ -1,15 +1,15 @@
 import React from "react";
 
-import ProfileDetailsCard from "./ProfileDetailsCard";
-import ActivityFeed from "./ActivityFeed";
-import SettingsMenu from "./SettingsMenu";
+import SearchBar from "./SearchBar";
+import FeaturedPropertiesCarousel from "./FeaturedPropertiesCarousel";
+import PropertyThumbnail from "./PropertyThumbnail";
 
 const Body = () => {
   return (
     <div>
-      <ProfileDetailsCard />
-      <ActivityFeed />
-      <SettingsMenu />
+      <SearchBar />
+      <FeaturedPropertiesCarousel />
+      <PropertyThumbnail />
     </div>
   );
 };
