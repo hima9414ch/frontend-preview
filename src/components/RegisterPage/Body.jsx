@@ -1,15 +1,17 @@
 import React from "react";
 
-import SignUpForm from "./SignUpForm";
-import SocialLoginButtons from "./SocialLoginButtons";
-import RegistrationSuccessModal from "./RegistrationSuccessModal";
+import RegistrationForm from "./RegistrationForm";
+import InputValidation from "./InputValidation";
+import SubmitButton from "./SubmitButton";
+import SuccessMessageDisplay from "./SuccessMessageDisplay";
 
 const Body = () => {
   return (
     <div>
-      <SignUpForm />
-      <SocialLoginButtons />
-      <RegistrationSuccessModal />
+      <RegistrationForm />
+      <InputValidation />
+      <SubmitButton />
+      <SuccessMessageDisplay />
     </div>
   );
 };
