@@ -1,15 +1,15 @@
 import React from "react";
 
-import SearchBar from "./SearchBar";
-import ProductList from "./ProductList";
-import PaginationControls from "./PaginationControls";
+import PropertyList from "./PropertyList";
+import FilterSidebar from "./FilterSidebar";
+import Pagination from "./Pagination";
 
 const Body = () => {
   return (
     <div>
-      <SearchBar />
-      <ProductList />
-      <PaginationControls />
+      <PropertyList />
+      <FilterSidebar />
+      <Pagination />
     </div>
   );
 };
