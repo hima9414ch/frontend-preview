@@ -1,25 +1,15 @@
 import React from "react";
 
-import HeroSection from "./HeroSection";
-import FeaturedProducts from "./FeaturedProducts";
+import HeroBanner from "./HeroBanner";
+import ServiceHighlights from "./ServiceHighlights";
 import Testimonials from "./Testimonials";
-import NewsletterSignup from "./NewsletterSignup";
-import BlogHighlights from "./BlogHighlights";
-import AboutUsBrief from "./AboutUsBrief";
-import ContactForm from "./ContactForm";
-import ServicesOverview from "./ServicesOverview";
 
 const Body = () => {
   return (
     <div>
-      <HeroSection />
-      <FeaturedProducts />
+      <HeroBanner />
+      <ServiceHighlights />
       <Testimonials />
-      <NewsletterSignup />
-      <BlogHighlights />
-      <AboutUsBrief />
-      <ContactForm />
-      <ServicesOverview />
     </div>
   );
 };
