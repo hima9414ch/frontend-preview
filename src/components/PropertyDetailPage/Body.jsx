@@ -1,15 +1,17 @@
 import React from "react";
 
 import PropertyGallery from "./PropertyGallery";
+import PropertyPrice from "./PropertyPrice";
 import PropertyDescription from "./PropertyDescription";
-import ContactAgentForm from "./ContactAgentForm";
+import UserReviews from "./UserReviews";
 
 const Body = () => {
   return (
     <div>
       <PropertyGallery />
+      <PropertyPrice />
       <PropertyDescription />
-      <ContactAgentForm />
+      <UserReviews />
     </div>
   );
 };
