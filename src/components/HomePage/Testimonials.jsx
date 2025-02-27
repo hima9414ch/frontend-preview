@@ -27,7 +27,7 @@ const Testimonials = () => {
         name: 'Emily Rodriguez',
         role: 'Creative Director',
         image: images[2],
-        content: 'I am thoroughly impressed with the quality of service and attention to detail. Their team's creativity and technical prowess have transformed our vision into reality.',
+        content: 'I am thoroughly impressed with the quality of service and attention to detail. Their team s creativity and technical prowess have transformed our vision into reality.',
         rating: 4
       }
     ];
