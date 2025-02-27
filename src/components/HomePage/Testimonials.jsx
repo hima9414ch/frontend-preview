@@ -1,48 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import images from '../assets/images';
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Sarah Johnson',
-      role: 'Marketing Director',
-      image: images[0],
-      content: 'Working with this team has been an absolute game-changer for our business. Their innovative solutions and dedication to excellence have helped us achieve remarkable results.',
-      rating: 5
-    },
-    {
-      id: 2,
-      name: 'Michael Chen',
-      role: 'Tech Entrepreneur',
-      image: images[1],
-      content: 'I am thoroughly impressed with the level of professionalism and expertise. The attention to detail and creative approach has exceeded our expectations.',
-      rating: 5
-    },
-    {
-      id: 3,
-      name: 'Emily Rodriguez',
-      role: 'Product Manager',
-      image: images[2],
-      content: 'The teams ability to understand our vision and translate it into reality is remarkable. Theyve become an invaluable partner in our success journey.',
-      rating: 4
-    }
-  ];
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const dummyTestimonials = [
+      {
+        id: 1,
+        name: 'Sarah Johnson',
+        role: 'Marketing Director',
+        image: images[0],
+        content: 'Working with this team has been an absolute game-changer for our business. Their innovative solutions and dedication to excellence have helped us achieve remarkable results.',
+        rating: 5
+      },
+      {
+        id: 2,
+        name: 'Michael Chen',
+        role: 'Tech Entrepreneur',
+        image: images[1],
+        content: 'The level of professionalism and expertise demonstrated by this company is unmatched. They truly understand our needs and deliver beyond expectations.',
+        rating: 5
+      },
+      {
+        id: 3,
+        name: 'Emily Rodriguez',
+        role: 'Creative Director',
+        image: images[2],
+        content: 'I am thoroughly impressed with the quality of service and attention to detail. Their team's creativity and technical prowess have transformed our vision into reality.',
+        rating: 4
+      }
+    ];
+    setTestimonials(dummyTestimonials);
+  }, []);
 
   return (
-    <div id="Testimonials_1" className="bg-gradient-to-b from-gray-50 to-white py-16 px-4 sm:px-6 lg:px-8">
+    <div id="Testimonials_1" className="bg-gradient-to-b from-purple-50 to-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 id="Testimonials_2" className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
           <p id="Testimonials_3" className="text-xl text-gray-600">Trusted by industry leaders worldwide</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
               id={`Testimonials_${testimonial.id + 3}`}
-              className="bg-white rounded-xl shadow-lg p-8 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl"
+              className="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 ease-in-out"
             >
               <div className="flex items-center mb-6">
                 <img
@@ -55,9 +60,7 @@ const Testimonials = () => {
                   <p className="text-gray-600">{testimonial.role}</p>
                 </div>
               </div>
-              
               <p className="text-gray-700 mb-6">"{testimonial.content}"</p>
-              
               <div className="flex items-center">
                 {[...Array(testimonial.rating)].map((_, index) => (
                   <svg
@@ -72,11 +75,11 @@ const Testimonials = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
           <button
             id="Testimonials_7"
-            className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-300 transform hover:scale-105"
+            className="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition-colors duration-300 ease-in-out transform hover:scale-105"
           >
             View More Testimonials
           </button>
