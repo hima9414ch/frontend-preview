@@ -1,25 +1,24 @@
 import React from "react";
-import HeroSection from "./HeroSection";
-import NavigationMenu from "./NavigationMenu";
-import ServicesSection from "./ServicesSection";
-import Testimonials from "./Testimonials";
-import Footer from "./Footer";
-import NewsletterSignUp from "./NewsletterSignUp";
+
+import HeroBanner from "./HeroBanner";
 import FeaturedProducts from "./FeaturedProducts";
+import Testimonials from "./Testimonials";
+import NewsletterSignup from "./NewsletterSignup";
+import BlogHighlights from "./BlogHighlights";
+import AboutUsBrief from "./AboutUsBrief";
+import ContactForm from "./ContactForm";
 
 const Body = () => {
   return (
-    <main className="flex flex-col items-center w-full min-h-screen bg-gray-100">
-      <NavigationMenu />
-      <HeroSection />
-      <section className="container mx-auto px-4 py-8">
-        <ServicesSection />
-        <FeaturedProducts />
-      </section>
+    <div>
+      <HeroBanner />
+      <FeaturedProducts />
       <Testimonials />
-      <NewsletterSignUp />
-      <Footer />
-    </main>
+      <NewsletterSignup />
+      <BlogHighlights />
+      <AboutUsBrief />
+      <ContactForm />
+    </div>
   );
 };
 
