@@ -1,0 +1,1 @@
+import React from "react"; export const PasswordRecoveryLink = () => { return (<div><input id="PasswordRecoveryLink_1" type="email" placeholder="Enter email"/><button id="PasswordRecoveryLink_2">Send Reset Link</button></div>)}
