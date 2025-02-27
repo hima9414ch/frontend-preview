@@ -1,0 +1,1 @@
+import React, { useState } from 'react'; export const SearchBar = () => { const [query, setQuery] = useState(''); return <input id="SearchBar_1" type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search properties..." /> }
