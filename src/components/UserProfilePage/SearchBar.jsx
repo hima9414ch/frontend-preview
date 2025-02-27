@@ -1,0 +1,1 @@
+import React from 'react'; export const SearchBar = () => { return (<div><input id="SearchBar_1" type="text" placeholder="Search by location, property type, etc." /><button id="SearchBar_2">Search</button></div>)}
