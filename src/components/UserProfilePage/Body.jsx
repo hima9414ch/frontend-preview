@@ -1,23 +1,15 @@
 import React from "react";
 
-import ProfilePicture from "./ProfilePicture";
-import BioSection from "./BioSection";
-import ContactInformation from "./ContactInformation";
-import SkillsList from "./SkillsList";
-import RecentActivityFeed from "./RecentActivityFeed";
-import EditProfileButton from "./EditProfileButton";
-import PrivacySettings from "./PrivacySettings";
+import ProfileDetailsCard from "./ProfileDetailsCard";
+import ActivityFeed from "./ActivityFeed";
+import SettingsMenu from "./SettingsMenu";
 
 const Body = () => {
   return (
     <div>
-      <ProfilePicture />
-      <BioSection />
-      <ContactInformation />
-      <SkillsList />
-      <RecentActivityFeed />
-      <EditProfileButton />
-      <PrivacySettings />
+      <ProfileDetailsCard />
+      <ActivityFeed />
+      <SettingsMenu />
     </div>
   );
 };
