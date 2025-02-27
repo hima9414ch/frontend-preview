@@ -1,15 +1,17 @@
 import React from "react";
 
-import PropertyList from "./PropertyList";
-import FilterSidebar from "./FilterSidebar";
-import Pagination from "./Pagination";
+import PropertyFilterComponent from "./PropertyFilterComponent";
+import PropertySortComponent from "./PropertySortComponent";
+import PropertyListView from "./PropertyListView";
+import PaginationComponent from "./PaginationComponent";
 
 const Body = () => {
   return (
     <div>
-      <PropertyList />
-      <FilterSidebar />
-      <Pagination />
+      <PropertyFilterComponent />
+      <PropertySortComponent />
+      <PropertyListView />
+      <PaginationComponent />
     </div>
   );
 };
