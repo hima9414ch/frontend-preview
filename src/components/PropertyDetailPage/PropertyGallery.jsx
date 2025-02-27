@@ -1,0 +1,1 @@
+import React from 'react'; export const PropertyGallery = () => { return (<div id="PropertyGallery_1"><img id="PropertyGallery_2" src="house.jpg" alt="Property"/><p id="PropertyGallery_3">Beautiful House</p></div>)}
