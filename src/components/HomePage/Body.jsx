@@ -1,15 +1,15 @@
 import React from "react";
 
-import HeroBanner from "./HeroBanner";
-import ServiceHighlights from "./ServiceHighlights";
-import Testimonials from "./Testimonials";
+import SearchBar from "./SearchBar";
+import FeaturedProperties from "./FeaturedProperties";
+import CategoryLinks from "./CategoryLinks";
 
 const Body = () => {
   return (
     <div>
-      <HeroBanner />
-      <ServiceHighlights />
-      <Testimonials />
+      <SearchBar />
+      <FeaturedProperties />
+      <CategoryLinks />
     </div>
   );
 };
