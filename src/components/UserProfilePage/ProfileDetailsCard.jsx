@@ -1,0 +1,1 @@
+import React from "react"; export const ProfileDetailsCard = () => { return (<div id="ProfileDetailsCard_1"><h2 id="ProfileDetailsCard_2">John Doe</h2><p id="ProfileDetailsCard_3">Web Developer</p></div>)}
