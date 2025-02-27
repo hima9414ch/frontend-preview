@@ -1,0 +1,1 @@
+import React from 'react'; export const SettingsMenu = () => { return (<div id="SettingsMenu_1"><h2 id="SettingsMenu_2">Settings</h2><button id="SettingsMenu_3">Save</button></div>)};
