@@ -1,15 +1,17 @@
 import React from "react";
 
-import SearchBar from "./SearchBar";
-import FeaturedPropertiesCarousel from "./FeaturedPropertiesCarousel";
-import PropertyThumbnail from "./PropertyThumbnail";
+import UserProfileForm from "./UserProfileForm";
+import UserListings from "./UserListings";
+import FavoritesList from "./FavoritesList";
+import EditProfileButton from "./EditProfileButton";
 
 const Body = () => {
   return (
     <div>
-      <SearchBar />
-      <FeaturedPropertiesCarousel />
-      <PropertyThumbnail />
+      <UserProfileForm />
+      <UserListings />
+      <FavoritesList />
+      <EditProfileButton />
     </div>
   );
 };
