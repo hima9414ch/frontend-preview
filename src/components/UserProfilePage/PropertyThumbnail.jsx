@@ -1,0 +1,1 @@
+export const PropertyThumbnail = ({image, price, location}) => { return (<div id="PropertyThumbnail_1"><img id="PropertyThumbnail_2" src={image} alt="property"/><h3 id="PropertyThumbnail_3">${price}</h3><p id="PropertyThumbnail_4">{location}</p></div>)}

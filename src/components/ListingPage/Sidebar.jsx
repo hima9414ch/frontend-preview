@@ -1,0 +1,1 @@
+import React from 'react'; export const Sidebar = () => { return (<div id="Sidebar_1"><select id="Sidebar_2"><option>House</option><option>Apartment</option></select><input type="range" id="Sidebar_3" min="0" max="1000000" /></div>);}

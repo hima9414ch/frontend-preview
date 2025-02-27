@@ -1,22 +1,22 @@
 import React from "react";
 
-import HeroBanner from "./HeroBanner";
-import FeaturedProducts from "./FeaturedProducts";
-import Testimonials from "./Testimonials";
-import NewsletterSignup from "./NewsletterSignup";
-import BlogHighlights from "./BlogHighlights";
-import AboutUsBrief from "./AboutUsBrief";
+import SearchBar from "./SearchBar";
+import FeaturedPropertiesCarousel from "./FeaturedPropertiesCarousel";
+import QuickSearchFilters from "./QuickSearchFilters";
+import LatestPropertiesSection from "./LatestPropertiesSection";
+import MapIntegrationForProperties from "./MapIntegrationForProperties";
+import UserTestimonialsCarousel from "./UserTestimonialsCarousel";
 import ContactForm from "./ContactForm";
 
 const Body = () => {
   return (
     <div>
-      <HeroBanner />
-      <FeaturedProducts />
-      <Testimonials />
-      <NewsletterSignup />
-      <BlogHighlights />
-      <AboutUsBrief />
+      <SearchBar />
+      <FeaturedPropertiesCarousel />
+      <QuickSearchFilters />
+      <LatestPropertiesSection />
+      <MapIntegrationForProperties />
+      <UserTestimonialsCarousel />
       <ContactForm />
     </div>
   );

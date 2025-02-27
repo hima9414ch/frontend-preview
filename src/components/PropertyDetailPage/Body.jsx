@@ -1,25 +1,17 @@
 import React from "react";
 
-import PropertyImagesCarousel from "./PropertyImagesCarousel";
+import PropertyGallery from "./PropertyGallery";
+import PropertyPrice from "./PropertyPrice";
 import PropertyDescription from "./PropertyDescription";
-import AmenitiesList from "./AmenitiesList";
-import LocationMap from "./LocationMap";
-import ContactForm from "./ContactForm";
-import PriceDetails from "./PriceDetails";
-import MortgageCalculator from "./MortgageCalculator";
-import PropertyReviews from "./PropertyReviews";
+import UserReviews from "./UserReviews";
 
 const Body = () => {
   return (
     <div>
-      <PropertyImagesCarousel />
+      <PropertyGallery />
+      <PropertyPrice />
       <PropertyDescription />
-      <AmenitiesList />
-      <LocationMap />
-      <ContactForm />
-      <PriceDetails />
-      <MortgageCalculator />
-      <PropertyReviews />
+      <UserReviews />
     </div>
   );
 };

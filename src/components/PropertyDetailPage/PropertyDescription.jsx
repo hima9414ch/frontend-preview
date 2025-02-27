@@ -1,100 +1,126 @@
-import React, { useEffect, useState } from 'react';
-import images from '../assets/images';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const PropertyDescription = () => {
+const PropertyDescription = ({ propertyId }) => {
   const [property, setProperty] = useState(null);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
-    // Fetch property details from backend
-    fetch('/api/property/123')
-      .then(res => res.json())
-      .then(data => setProperty(data))
-      .catch(err => console.error(err));
-  }, []);
+    const fetchProperty = async () => {
+      try {
+        const response = await axios.get(`/api/properties/${propertyId}`);
+        setProperty(response.data);
+      } catch (error) {
+        console.error('Error fetching property:', error);
+      }
+    };
+    fetchProperty();
+  }, [propertyId]);
 
-  const dummyProperty = {
-    title: 'Luxury Beachfront Villa',
-    price: '$2,500,000',
-    location: 'Malibu, California',
-    beds: 5,
-    baths: 4,
-    area: '4,500 sq ft',
-    description: 'Experience coastal living at its finest in this stunning beachfront villa. Featuring panoramic ocean views, high-end finishes, and direct beach access. The open-concept living space seamlessly connects to expansive terraces perfect for entertaining.',
-    features: [
-      'Private Beach Access',
-      'Infinity Pool',
-      'Gourmet Kitchen',
-      'Home Theater',
-      'Wine Cellar',
-      'Smart Home System'
-    ]
-  };
-
-  const propertyData = property || dummyProperty;
+  if (!property) {
+    return (
+      <div id="PropertyDescription_1" className="animate-pulse p-6 bg-gray-100 rounded-lg">
+        <div className="h-4 bg-gray-300 rounded w-3/4 mb-4"></div>
+        <div className="h-4 bg-gray-300 rounded w-1/2 mb-4"></div>
+        <div className="h-4 bg-gray-300 rounded w-2/3"></div>
+      </div>
+    );
+  }
 
   return (
-    <div id="PropertyDescription_1" className="max-w-7xl mx-auto p-6 bg-white rounded-xl shadow-lg">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-6">
-          <img 
-            id="PropertyDescription_2"
-            src={images[0] || 'https://example.com/luxury-home.jpg'} 
-            alt="Property" 
-            className="w-full h-[400px] object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
-          />
-          <div id="PropertyDescription_3" className="grid grid-cols-3 gap-4">
-            <div className="bg-gray-50 p-4 rounded-lg text-center hover:bg-gray-100 transition-colors">
-              <p className="text-gray-600">Bedrooms</p>
-              <p className="text-xl font-bold text-gray-800">{propertyData.beds}</p>
-            </div>
-            <div className="bg-gray-50 p-4 rounded-lg text-center hover:bg-gray-100 transition-colors">
-              <p className="text-gray-600">Bathrooms</p>
-              <p className="text-xl font-bold text-gray-800">{propertyData.baths}</p>
-            </div>
-            <div className="bg-gray-50 p-4 rounded-lg text-center hover:bg-gray-100 transition-colors">
-              <p className="text-gray-600">Area</p>
-              <p className="text-xl font-bold text-gray-800">{propertyData.area}</p>
-            </div>
-          </div>
-        </div>
+    <div id="PropertyDescription_2" className="bg-white rounded-xl shadow-lg p-6 max-w-4xl mx-auto">
+      <div className="flex flex-wrap gap-4 mb-6">
+        <button
+          onClick={() => setActiveTab('overview')}
+          className={`px-4 py-2 rounded-full transition-all ${activeTab === 'overview' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
+        >
+          Overview
+        </button>
+        <button
+          onClick={() => setActiveTab('features')}
+          className={`px-4 py-2 rounded-full transition-all ${activeTab === 'features' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
+        >
+          Features
+        </button>
+        <button
+          onClick={() => setActiveTab('location')}
+          className={`px-4 py-2 rounded-full transition-all ${activeTab === 'location' ? 'bg-blue-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
+        >
+          Location
+        </button>
+      </div>
 
-        <div id="PropertyDescription_4" className="space-y-6">
-          <div className="border-b pb-4">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">{propertyData.title}</h1>
-            <p className="text-2xl font-semibold text-blue-600">{propertyData.price}</p>
-            <p className="text-lg text-gray-600">{propertyData.location}</p>
+      <div className="space-y-6">
+        {activeTab === 'overview' && (
+          <div id="PropertyDescription_3" className="animate-fade-in">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Property Overview</h2>
+            <p className={`text-gray-600 leading-relaxed ${!isExpanded ? 'line-clamp-4' : ''}`}>
+              {property.description}
+            </p>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-blue-600 hover:text-blue-700 mt-2 font-medium"
+            >
+              {isExpanded ? 'Show less' : 'Read more'}
+            </button>
           </div>
+        )}
 
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-gray-800">Description</h2>
-            <p className="text-gray-600 leading-relaxed">{propertyData.description}</p>
-          </div>
-
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-gray-800">Features</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {propertyData.features.map((feature, index) => (
-                <div 
-                  key={index}
-                  id={`PropertyDescription_${index + 5}`}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+        {activeTab === 'features' && (
+          <div id="PropertyDescription_4" className="animate-fade-in">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Key Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {property.features.map((feature, index) => (
+                <div key={index} className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span>{feature}</span>
+                  <span className="text-gray-700">{feature}</span>
                 </div>
               ))}
             </div>
           </div>
+        )}
 
-          <button 
-            id="PropertyDescription_11"
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105"
-            onClick={() => window.location.href = '/contact-agent'}
-          >
-            Contact Agent
-          </button>
+        {activeTab === 'location' && (
+          <div id="PropertyDescription_5" className="animate-fade-in">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Location Advantages</h2>
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg">
+              <ul className="space-y-3">
+                {property.locationAdvantages.map((advantage, index) => (
+                  <li key={index} className="flex items-center space-x-3">
+                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                      {index + 1}
+                    </span>
+                    <span className="text-gray-700">{advantage}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div id="PropertyDescription_6" className="mt-8 p-4 bg-gray-50 rounded-lg">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2">Property Details</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+            <span className="block text-sm text-gray-500">Size</span>
+            <span className="block text-lg font-semibold text-gray-800">{property.size} sq ft</span>
+          </div>
+          <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+            <span className="block text-sm text-gray-500">Bedrooms</span>
+            <span className="block text-lg font-semibold text-gray-800">{property.bedrooms}</span>
+          </div>
+          <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+            <span className="block text-sm text-gray-500">Bathrooms</span>
+            <span className="block text-lg font-semibold text-gray-800">{property.bathrooms}</span>
+          </div>
+          <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+            <span className="block text-sm text-gray-500">Year Built</span>
+            <span className="block text-lg font-semibold text-gray-800">{property.yearBuilt}</span>
+          </div>
         </div>
       </div>
     </div>

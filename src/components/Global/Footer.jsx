@@ -1,57 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import images from '../assets/images';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-12">
-      <div className="container mx-auto px-4">
+    <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div id="Footer_1" className="space-y-4">
-            <img src={images[0]} alt="Logo" className="h-12" />
-            <p className="text-gray-300">Your trusted partner in creating amazing digital experiences. We bring innovation to life.</p>
+            <h3 className="text-xl font-bold">Real Estate Hub</h3>
+            <p className="text-gray-300">Your trusted partner in finding the perfect property.</p>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-blue-400 transition-colors"><i className="fab fa-facebook"></i></a>
-              <a href="#" className="hover:text-blue-400 transition-colors"><i className="fab fa-twitter"></i></a>
-              <a href="#" className="hover:text-blue-400 transition-colors"><i className="fab fa-instagram"></i></a>
-              <a href="#" className="hover:text-blue-400 transition-colors"><i className="fab fa-linkedin"></i></a>
+              <a href="https://facebook.com" className="hover:text-blue-400 transition-colors"><FaFacebook size={24} /></a>
+              <a href="https://twitter.com" className="hover:text-blue-400 transition-colors"><FaTwitter size={24} /></a>
+              <a href="https://instagram.com" className="hover:text-pink-400 transition-colors"><FaInstagram size={24} /></a>
+              <a href="https://linkedin.com" className="hover:text-blue-400 transition-colors"><FaLinkedin size={24} /></a>
+              <a href="https://youtube.com" className="hover:text-red-400 transition-colors"><FaYoutube size={24} /></a>
             </div>
           </div>
           
           <div id="Footer_2" className="space-y-4">
             <h3 className="text-xl font-bold">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="hover:text-blue-400 transition-colors">Home</Link></li>
-              <li><Link to="/about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
-              <li><Link to="/services" className="hover:text-blue-400 transition-colors">Services</Link></li>
-              <li><Link to="/portfolio" className="hover:text-blue-400 transition-colors">Portfolio</Link></li>
-              <li><Link to="/contact" className="hover:text-blue-400 transition-colors">Contact</Link></li>
+              <li><Link to="/homepage" className="hover:text-gray-300 transition-colors">Home</Link></li>
+              <li><Link to="/listingpage" className="hover:text-gray-300 transition-colors">Listings</Link></li>
+              <li><Link to="/propertydetailpage" className="hover:text-gray-300 transition-colors">Property Details</Link></li>
             </ul>
           </div>
           
           <div id="Footer_3" className="space-y-4">
-            <h3 className="text-xl font-bold">Services</h3>
+            <h3 className="text-xl font-bold">Account</h3>
             <ul className="space-y-2">
-              <li className="hover:text-blue-400 transition-colors cursor-pointer">Web Development</li>
-              <li className="hover:text-blue-400 transition-colors cursor-pointer">Mobile Apps</li>
-              <li className="hover:text-blue-400 transition-colors cursor-pointer">UI/UX Design</li>
-              <li className="hover:text-blue-400 transition-colors cursor-pointer">Cloud Solutions</li>
-              <li className="hover:text-blue-400 transition-colors cursor-pointer">Digital Marketing</li>
+              <li><Link to="/loginpage" className="hover:text-gray-300 transition-colors">Login</Link></li>
+              <li><Link to="/registerpage" className="hover:text-gray-300 transition-colors">Register</Link></li>
+              <li><Link to="/userprofilepage" className="hover:text-gray-300 transition-colors">My Profile</Link></li>
             </ul>
           </div>
           
           <div id="Footer_4" className="space-y-4">
-            <h3 className="text-xl font-bold">Contact Info</h3>
-            <div className="space-y-2">
-              <p className="flex items-center"><i className="fas fa-map-marker-alt mr-2"></i> 123 Business Street, Tech City</p>
-              <p className="flex items-center"><i className="fas fa-phone mr-2"></i> +1 234 567 890</p>
-              <p className="flex items-center"><i className="fas fa-envelope mr-2"></i> info@company.com</p>
-            </div>
+            <h3 className="text-xl font-bold">Contact Us</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li>123 Real Estate Avenue</li>
+              <li>Property City, PC 12345</li>
+              <li>Phone: (123) 456-7890</li>
+              <li>Email: info@realestatehub.com</li>
+            </ul>
           </div>
         </div>
         
-        <div id="Footer_5" className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-400">&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+        <div id="Footer_5" className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-300">
+          <p>© {new Date().getFullYear()} Real Estate Hub. All rights reserved.</p>
         </div>
       </div>
     </footer>

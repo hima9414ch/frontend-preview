@@ -1,0 +1,1 @@
+import React from 'react'; export const PaginationControls = ({ currentPage, totalPages }) => { return (<div id="PaginationControls_1"><button id="PaginationControls_2">Prev</button><span id="PaginationControls_3">{currentPage}</span><button id="PaginationControls_4">Next</button></div>)}

@@ -1,0 +1,1 @@
+import React from 'react'; export const EmailInput = () => { return (<input type="email" id="EmailInput_1" placeholder="Enter email" required />) }

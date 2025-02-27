@@ -11,8 +11,8 @@ import UserProfilePage from "./UserProfilePage/Body.jsx";
 
 const Body = () => {
 return (
-  <Router>
-        <Header />
+    <Router>
+      <Header />
         <Routes>
             <Route path="/" element={<HomePage />} />
         <Route path="/listingpage" element={<ListingPage />} />
@@ -21,8 +21,8 @@ return (
         <Route path="/registerpage" element={<RegisterPage />} />
         <Route path="/userprofilepage" element={<UserProfilePage />} />
         </Routes>
-        <Footer />
-      </Router>
+      <Footer />
+    </Router>
 );
 };
 

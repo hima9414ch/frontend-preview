@@ -1,0 +1,1 @@
+import React from "react"; export const ContactAgentForm = () => { return (<form id="ContactAgentForm_1"><input id="ContactAgentForm_2" type="text" placeholder="Name" /><button id="ContactAgentForm_3">Contact Agent</button></form>)}

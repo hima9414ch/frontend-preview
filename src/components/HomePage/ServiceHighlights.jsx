@@ -1,0 +1,1 @@
+import React from "react"; export const ServiceHighlights = () => { return (<div id="ServiceHighlights_1"><h2 id="ServiceHighlights_2">Our Services</h2><ul id="ServiceHighlights_3"><li>Web Development</li><li>App Design</li></ul></div>)}

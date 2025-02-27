@@ -1,0 +1,1 @@
+import React from 'react'; export const ProductList = () => { return (<div id="ProductList_1"><h2 id="ProductList_2">Products</h2><ul id="ProductList_3"><li id="ProductList_4">Product 1</li><li id="ProductList_5">Product 2</li></ul></div>)}

@@ -1,0 +1,1 @@
+import React from 'react'; export const PropertyList = () => { const [properties, setProperties] = React.useState([]); return (<div id="PropertyList_1">{properties.map(p => <div id="PropertyList_2" key={p.id}><img id="PropertyList_3" src={p.image} /><h3 id="PropertyList_4">{p.title}</h3></div>)}</div>)}

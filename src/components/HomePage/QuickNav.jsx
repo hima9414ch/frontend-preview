@@ -1,0 +1,1 @@
+import React from 'react'; export const QuickNav = () => { return (<div id="QuickNav_1"><button id="QuickNav_2">Rent</button><button id="QuickNav_3">Buy</button><button id="QuickNav_4">Lease</button></div>); }

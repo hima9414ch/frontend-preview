@@ -1,0 +1,1 @@
+import React from 'react'; export const ActivityFeed = () => { return (<div id="ActivityFeed_1"><h2 id="ActivityFeed_2">Recent Activity</h2><ul id="ActivityFeed_3"><li>New post added</li><li>User joined</li></ul></div>)}
