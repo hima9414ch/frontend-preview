@@ -1,55 +1,57 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div id="Footer_1" className="space-y-4">
-            <h3 className="text-xl font-bold">Real Estate Hub</h3>
-            <p className="text-gray-300">Your trusted partner in finding the perfect property.</p>
-            <div className="flex space-x-4">
-              <a href="https://facebook.com" className="hover:text-blue-400 transition-colors"><FaFacebook size={24} /></a>
-              <a href="https://twitter.com" className="hover:text-blue-400 transition-colors"><FaTwitter size={24} /></a>
-              <a href="https://instagram.com" className="hover:text-pink-400 transition-colors"><FaInstagram size={24} /></a>
-              <a href="https://linkedin.com" className="hover:text-blue-400 transition-colors"><FaLinkedin size={24} /></a>
-              <a href="https://youtube.com" className="hover:text-red-400 transition-colors"><FaYoutube size={24} /></a>
+    <footer id="Footer_1" className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-8">
+      <div id="Footer_2" className="container mx-auto px-4">
+        <div id="Footer_3" className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div id="Footer_4" className="text-center md:text-left">
+            <h3 id="Footer_5" className="text-xl font-semibold mb-4">Quick Links</h3>
+            <nav id="Footer_6" className="space-y-2">
+              <Link to="/privacy-policy" className="block hover:text-blue-400 transition duration-300">Privacy Policy</Link>
+              <Link to="/terms-of-use" className="block hover:text-blue-400 transition duration-300">Terms of Use</Link>
+            </nav>
+          </div>
+          
+          <div id="Footer_7" className="text-center">
+            <h3 id="Footer_8" className="text-xl font-semibold mb-4">Connect With Us</h3>
+            <div id="Footer_9" className="flex justify-center space-x-6">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition duration-300">
+                <FaFacebook size={24} />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition duration-300">
+                <FaTwitter size={24} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition duration-300">
+                <FaInstagram size={24} />
+              </a>
             </div>
           </div>
           
-          <div id="Footer_2" className="space-y-4">
-            <h3 className="text-xl font-bold">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/homepage" className="hover:text-gray-300 transition-colors">Home</Link></li>
-              <li><Link to="/listingpage" className="hover:text-gray-300 transition-colors">Listings</Link></li>
-              <li><Link to="/propertydetailpage" className="hover:text-gray-300 transition-colors">Property Details</Link></li>
-            </ul>
-          </div>
-          
-          <div id="Footer_3" className="space-y-4">
-            <h3 className="text-xl font-bold">Account</h3>
-            <ul className="space-y-2">
-              <li><Link to="/loginpage" className="hover:text-gray-300 transition-colors">Login</Link></li>
-              <li><Link to="/registerpage" className="hover:text-gray-300 transition-colors">Register</Link></li>
-              <li><Link to="/userprofilepage" className="hover:text-gray-300 transition-colors">My Profile</Link></li>
-            </ul>
-          </div>
-          
-          <div id="Footer_4" className="space-y-4">
-            <h3 className="text-xl font-bold">Contact Us</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>123 Real Estate Avenue</li>
-              <li>Property City, PC 12345</li>
-              <li>Phone: (123) 456-7890</li>
-              <li>Email: info@realestatehub.com</li>
-            </ul>
+          <div id="Footer_10" className="text-center md:text-right">
+            <h3 id="Footer_11" className="text-xl font-semibold mb-4">Newsletter</h3>
+            <form id="Footer_12" className="flex flex-col space-y-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="px-4 py-2 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded transition duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
         
-        <div id="Footer_5" className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-300">
-          <p>© {new Date().getFullYear()} Real Estate Hub. All rights reserved.</p>
+        <div id="Footer_13" className="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
+          <p id="Footer_14" className="text-gray-400">
+            Copyright © 2023 YourWebsiteName. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

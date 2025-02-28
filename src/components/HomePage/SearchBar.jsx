@@ -1,90 +1,92 @@
-import React, { useState, useEffect } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { FaSearch, FaHome, FaDollarSign } from 'react-icons/fa';
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [location, setLocation] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [propertyType, setPropertyType] = useState('');
 
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      if (searchTerm.length < 2) {
-        setSuggestions([]);
-        return;
-      }
-
-      setIsLoading(true);
-      try {
-        const response = await fetch(`/api/properties?search=${searchTerm}`);
-        const data = await response.json();
-        setSuggestions(data.slice(0, 5));
-      } catch (error) {
-        console.error('Error fetching suggestions:', error);
-      }
-      setIsLoading(false);
-    };
-
-    const debounceTimer = setTimeout(fetchSuggestions, 300);
-    return () => clearTimeout(debounceTimer);
-  }, [searchTerm]);
+  const handleSearch = async () => {
+    try {
+      const response = await axios.post('/api/properties/list', {
+        location,
+        minPrice,
+        maxPrice,
+        type: propertyType
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching properties:', error);
+    }
+  };
 
   return (
-    <div id="SearchBar_1" className="w-full max-w-4xl mx-auto px-4 py-6">
-      <div className="relative">
-        <div className="flex items-center relative bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200">
-          <input
-            id="SearchBar_2"
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Enter keyword or property ID..."
-            className="w-full px-8 py-4 rounded-full focus:outline-none text-lg"
-          />
-          <button
-            id="SearchBar_3"
-            className="absolute right-0 h-full px-6 flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-r-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
-          >
-            <FaSearch className="text-xl" />
-          </button>
-        </div>
-
-        {isLoading && (
-          <div id="SearchBar_4" className="absolute w-full bg-white mt-2 rounded-lg shadow-lg p-4">
-            <div className="flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+    <div id="SearchBar_1" className="w-full max-w-4xl mx-auto p-6">
+      <div id="SearchBar_2" className="bg-white rounded-xl shadow-2xl p-6 backdrop-blur-lg bg-opacity-90 border border-gray-200">
+        <div id="SearchBar_3" className="flex flex-col md:flex-row gap-4">
+          <div id="SearchBar_4" className="flex-1">
+            <div id="SearchBar_5" className="relative">
+              <FaHome className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                id="SearchBar_6"
+                type="text"
+                placeholder="Enter location..."
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
             </div>
           </div>
-        )}
-
-        {!isLoading && suggestions.length > 0 && (
-          <div id="SearchBar_5" className="absolute w-full bg-white mt-2 rounded-lg shadow-lg overflow-hidden">
-            {suggestions.map((suggestion, index) => (
-              <div
-                key={suggestion.id}
-                id={`SearchBar_suggestion_${index}`}
-                className="px-6 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200 border-b last:border-b-0 border-gray-100"
-                onClick={() => setSearchTerm(suggestion.title)}
-              >
-                <div className="font-medium text-gray-800">{suggestion.title}</div>
-                <div className="text-sm text-gray-500">ID: {suggestion.id}</div>
-              </div>
-            ))}
+          
+          <div id="SearchBar_7" className="flex-1 flex gap-2">
+            <div id="SearchBar_8" className="relative flex-1">
+              <FaDollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                id="SearchBar_9"
+                type="number"
+                placeholder="Min Price"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
+              />
+            </div>
+            <div id="SearchBar_10" className="relative flex-1">
+              <FaDollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                id="SearchBar_11"
+                type="number"
+                placeholder="Max Price"
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
+              />
+            </div>
           </div>
-        )}
-      </div>
-      
-      <div id="SearchBar_6" className="mt-4 flex flex-wrap gap-2 justify-center">
-        <span className="text-sm text-gray-500">Popular searches:</span>
-        {['Apartments', 'Houses', 'Condos', 'Villas', 'Penthouses'].map((term, index) => (
-          <button
-            key={index}
-            id={`SearchBar_popular_${index}`}
-            onClick={() => setSearchTerm(term)}
-            className="px-4 py-1 bg-gray-100 rounded-full text-sm text-gray-600 hover:bg-gray-200 transition-colors duration-200"
+          
+          <select
+            id="SearchBar_12"
+            className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            value={propertyType}
+            onChange={(e) => setPropertyType(e.target.value)}
           >
-            {term}
+            <option value="">Select Property Type</option>
+            <option value="house">House</option>
+            <option value="apartment">Apartment</option>
+            <option value="villa">Villa</option>
+            <option value="condo">Condo</option>
+          </select>
+          
+          <button
+            id="SearchBar_13"
+            onClick={handleSearch}
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          >
+            <FaSearch />
+            Search
           </button>
-        ))}
+        </div>
       </div>
     </div>
   );

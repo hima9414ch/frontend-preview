@@ -1,15 +1,15 @@
 import React from "react";
 
 import LoginForm from "./LoginForm";
-import SocialLoginButtons from "./SocialLoginButtons";
 import PasswordRecoveryLink from "./PasswordRecoveryLink";
+import RegistrationLink from "./RegistrationLink";
 
 const Body = () => {
   return (
     <div>
       <LoginForm />
-      <SocialLoginButtons />
       <PasswordRecoveryLink />
+      <RegistrationLink />
     </div>
   );
 };
