@@ -1,60 +1,56 @@
 import React from 'react';
-import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp, FaPinterest } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
-const SocialShareButtons = ({ url, title }) => {
-  const shareUrls = {
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-    twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
-    linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`,
-    whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(`${title} ${url}`)}`,
-    pinterest: `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(title)}`
+const SocialShareButtons = ({ url = window.location.href, title = 'Check out this awesome content!' }) => {
+  const shareOnFacebook = () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
   };
 
-  const handleShare = (platform) => {
-    window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+  const shareOnTwitter = () => {
+    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+  };
+
+  const shareOnLinkedIn = () => {
+    window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank');
+  };
+
+  const shareOnWhatsapp = () => {
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
   };
 
   return (
-    <div id="SocialShareButtons_1" className="flex items-center space-x-4 py-4">
+    <div id="SocialShareButtons_1" className="fixed left-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 bg-white p-3 rounded-lg shadow-lg">
       <button
         id="SocialShareButtons_2"
-        onClick={() => handleShare('facebook')}
-        className="transform hover:scale-110 transition-transform duration-200 p-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 text-white hover:shadow-lg"
+        onClick={shareOnFacebook}
+        className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transform hover:scale-110 transition-all duration-300 shadow-md"
         aria-label="Share on Facebook"
       >
-        <FaFacebook className="w-5 h-5" />
+        <FaFacebook className="text-xl" />
       </button>
       <button
         id="SocialShareButtons_3"
-        onClick={() => handleShare('twitter')}
-        className="transform hover:scale-110 transition-transform duration-200 p-2 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 text-white hover:shadow-lg"
+        onClick={shareOnTwitter}
+        className="p-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 text-white hover:from-blue-500 hover:to-blue-600 transform hover:scale-110 transition-all duration-300 shadow-md"
         aria-label="Share on Twitter"
       >
-        <FaTwitter className="w-5 h-5" />
+        <FaTwitter className="text-xl" />
       </button>
       <button
         id="SocialShareButtons_4"
-        onClick={() => handleShare('linkedin')}
-        className="transform hover:scale-110 transition-transform duration-200 p-2 rounded-full bg-gradient-to-r from-blue-700 to-blue-900 text-white hover:shadow-lg"
+        onClick={shareOnLinkedIn}
+        className="p-3 rounded-full bg-gradient-to-r from-blue-700 to-blue-800 text-white hover:from-blue-800 hover:to-blue-900 transform hover:scale-110 transition-all duration-300 shadow-md"
         aria-label="Share on LinkedIn"
       >
-        <FaLinkedin className="w-5 h-5" />
+        <FaLinkedin className="text-xl" />
       </button>
       <button
         id="SocialShareButtons_5"
-        onClick={() => handleShare('whatsapp')}
-        className="transform hover:scale-110 transition-transform duration-200 p-2 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white hover:shadow-lg"
+        onClick={shareOnWhatsapp}
+        className="p-3 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transform hover:scale-110 transition-all duration-300 shadow-md"
         aria-label="Share on WhatsApp"
       >
-        <FaWhatsapp className="w-5 h-5" />
-      </button>
-      <button
-        id="SocialShareButtons_6"
-        onClick={() => handleShare('pinterest')}
-        className="transform hover:scale-110 transition-transform duration-200 p-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white hover:shadow-lg"
-        aria-label="Share on Pinterest"
-      >
-        <FaPinterest className="w-5 h-5" />
+        <FaWhatsapp className="text-xl" />
       </button>
     </div>
   );
