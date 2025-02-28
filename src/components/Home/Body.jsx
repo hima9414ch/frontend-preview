@@ -1,25 +1,23 @@
 import React from "react";
 
+import CategoryFilterDropdown from "./CategoryFilterDropdown";
 import SearchBar from "./SearchBar";
-import CategoryFilter from "./CategoryFilter";
 import PostList from "./PostList";
-import PostSummary from "./PostSummary";
+import PostSnippet from "./PostSnippet";
+import ResponsiveImage from "./ResponsiveImage";
+import SummaryText from "./SummaryText";
 import ReadMoreLink from "./ReadMoreLink";
-import Sidebar from "./Sidebar";
-import PopularPosts from "./PopularPosts";
-import AuthorInfo from "./AuthorInfo";
 
 const Body = () => {
   return (
     <div>
+      <CategoryFilterDropdown />
       <SearchBar />
-      <CategoryFilter />
       <PostList />
-      <PostSummary />
+      <PostSnippet />
+      <ResponsiveImage />
+      <SummaryText />
       <ReadMoreLink />
-      <Sidebar />
-      <PopularPosts />
-      <AuthorInfo />
     </div>
   );
 };
