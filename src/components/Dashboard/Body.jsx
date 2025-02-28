@@ -1,17 +1,15 @@
 import React from "react";
 
-import UserProfile from "./UserProfile";
+import PostForm from "./PostForm";
 import PostList from "./PostList";
-import PostEditorModal from "./PostEditorModal";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import PostListItem from "./PostListItem";
 
 const Body = () => {
   return (
     <div>
-      <UserProfile />
+      <PostForm />
       <PostList />
-      <PostEditorModal />
-      <DeleteConfirmationModal />
+      <PostListItem />
     </div>
   );
 };
