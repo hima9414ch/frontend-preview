@@ -1,23 +1,23 @@
 import React from "react";
 
 import SearchBar from "./SearchBar";
-import FeaturedPropertiesCarousel from "./FeaturedPropertiesCarousel";
-import QuickSearchFilters from "./QuickSearchFilters";
-import LatestPropertiesSection from "./LatestPropertiesSection";
-import MapIntegrationForProperties from "./MapIntegrationForProperties";
-import UserTestimonialsCarousel from "./UserTestimonialsCarousel";
-import ContactForm from "./ContactForm";
+import FeaturedPropertiesSection from "./FeaturedPropertiesSection";
+import RecentPropertiesList from "./RecentPropertiesList";
+import PropertyTypeFilter from "./PropertyTypeFilter";
+import PriceRangeFilter from "./PriceRangeFilter";
+import LocationFilter from "./LocationFilter";
+import CallToActionSection from "./CallToActionSection";
 
 const Body = () => {
   return (
     <div>
       <SearchBar />
-      <FeaturedPropertiesCarousel />
-      <QuickSearchFilters />
-      <LatestPropertiesSection />
-      <MapIntegrationForProperties />
-      <UserTestimonialsCarousel />
-      <ContactForm />
+      <FeaturedPropertiesSection />
+      <RecentPropertiesList />
+      <PropertyTypeFilter />
+      <PriceRangeFilter />
+      <LocationFilter />
+      <CallToActionSection />
     </div>
   );
 };
