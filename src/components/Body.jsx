@@ -4,7 +4,7 @@ import Header from "./Global/Header.jsx";
 import Footer from "./Global/Footer.jsx";
 import Home from "./Home/Body.jsx";
 import Dashboard from "./Dashboard/Body.jsx";
-import Blog Post from "./Blog Post/Body.jsx";
+import BlogPost from "./Blog Post/Body.jsx";
 
 const Body = () => {
 return (
@@ -13,7 +13,7 @@ return (
         <Routes>
             <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/blog post" element={<Blog Post />} />
+        <Route path="/blogpost" element={<BlogPost />} />
         </Routes>
       <Footer />
     </Router>
