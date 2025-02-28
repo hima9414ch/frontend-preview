@@ -3,52 +3,78 @@ import { Link, useNavigate } from 'react-router-dom';
 import images from '../assets/images';
 
 const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userDropdown, setUserDropdown] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setIsAuthenticated(false);
-    navigate('/homepage');
+    setIsLoggedIn(false);
+    navigate('/home');
   };
 
   return (
-    <header id="Header_1" className="bg-gradient-to-r from-gray-50 to-gray-100 shadow-md fixed w-full top-0 z-50">
+    <header id="Header_1" className="bg-gradient-to-r from-blue-600 to-purple-600 fixed w-full top-0 z-50 shadow-lg">
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <div id="Header_2" className="flex items-center space-x-2">
-            <img src={images[0]} alt="Logo" className="h-10 w-10 rounded-full" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">YourBrand</span>
+          <div id="Header_2" className="flex items-center space-x-4">
+            <Link to="/home" className="flex items-center">
+              <img src={images[0]} alt="Logo" className="h-10 w-10 rounded-full" />
+              <span className="text-white font-bold text-xl ml-2 hover:text-gray-200 transition-colors">BrandName</span>
+            </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <Link id="Header_3" to="/homepage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Home</Link>
-            <Link id="Header_4" to="/listingpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Listings</Link>
-            {isAuthenticated && (
-              <Link id="Header_5" to="/dashboardpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Dashboard</Link>
-            )}
+          {/* Desktop Navigation */}
+          <div id="Header_3" className="hidden md:flex items-center space-x-6">
+            <Link to="/home" className="text-white hover:text-gray-200 transition-colors font-medium">Home</Link>
+            <Link to="/dashboard" className="text-white hover:text-gray-200 transition-colors font-medium">Dashboard</Link>
+            <Link to="/blog-post" className="text-white hover:text-gray-200 transition-colors font-medium">Blog Post</Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
-            {!isAuthenticated ? (
-              <Link id="Header_6" to="/loginpage" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
-                Login
-              </Link>
+          {/* Authentication Controls */}
+          <div id="Header_4" className="hidden md:flex items-center space-x-4">
+            {isLoggedIn ? (
+              <div className="relative">
+                <button
+                  onClick={() => setUserDropdown(!userDropdown)}
+                  className="flex items-center space-x-2 text-white hover:text-gray-200 transition-colors"
+                >
+                  <img src={images[1]} alt="User" className="h-8 w-8 rounded-full" />
+                  <span>John Doe</span>
+                </button>
+                {userDropdown && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
-              <button
-                id="Header_7"
-                onClick={handleLogout}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium"
-              >
-                Logout
-              </button>
+              <div className="space-x-3">
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-white hover:bg-white hover:text-blue-600 border-2 border-white rounded-md transition-colors"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="px-4 py-2 bg-white text-blue-600 hover:bg-gray-100 rounded-md transition-colors"
+                >
+                  Register
+                </Link>
+              </div>
             )}
           </div>
 
+          {/* Mobile Menu Button */}
           <button
-            id="Header_8"
-            className="md:hidden text-gray-700 hover:text-blue-600"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden text-white focus:outline-none"
           >
             <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
               {isMenuOpen ? (
@@ -60,23 +86,35 @@ const Header = () => {
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div id="Header_9" className="md:hidden mt-4 pb-4">
-            <div className="flex flex-col space-y-4">
-              <Link to="/homepage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Home</Link>
-              <Link to="/listingpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Listings</Link>
-              {isAuthenticated && (
-                <Link to="/dashboardpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Dashboard</Link>
-              )}
-              {!isAuthenticated ? (
-                <Link to="/loginpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Login</Link>
-              ) : (
+          <div id="Header_5" className="md:hidden mt-4 pb-4">
+            <div className="flex flex-col space-y-3">
+              <Link to="/home" className="text-white hover:text-gray-200 transition-colors">Home</Link>
+              <Link to="/dashboard" className="text-white hover:text-gray-200 transition-colors">Dashboard</Link>
+              <Link to="/blog-post" className="text-white hover:text-gray-200 transition-colors">Blog Post</Link>
+              {isLoggedIn ? (
                 <button
                   onClick={handleLogout}
-                  className="text-left text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+                  className="text-white hover:text-gray-200 transition-colors text-left"
                 >
                   Logout
                 </button>
+              ) : (
+                <div className="space-y-2">
+                  <Link
+                    to="/login"
+                    className="block px-4 py-2 text-center text-white hover:bg-white hover:text-blue-600 border-2 border-white rounded-md transition-colors"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="block px-4 py-2 text-center bg-white text-blue-600 hover:bg-gray-100 rounded-md transition-colors"
+                  >
+                    Register
+                  </Link>
+                </div>
               )}
             </div>
           </div>
