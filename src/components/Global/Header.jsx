@@ -1,78 +1,84 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import images from '../assets/images';
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  const navLinks = [
-    { name: 'Home', path: '/homepage' },
-    { name: 'Listings', path: '/listingpage' },
-    ...(!isAuthenticated ? [
-      { name: 'Login', path: '/loginpage' },
-      { name: 'Register', path: '/registerpage' }
-    ] : [
-      { name: 'Profile', path: '/userprofilepage' }
-    ])
-  ];
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    navigate('/homepage');
+  };
 
   return (
-    <header id="Header_1" className="bg-gradient-to-r from-blue-600 to-blue-800 fixed w-full top-0 z-50 shadow-lg">
+    <header id="Header_1" className="bg-gradient-to-r from-gray-50 to-gray-100 shadow-md fixed w-full top-0 z-50">
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <Link to="/homepage" className="flex items-center space-x-3">
-            <img id="Header_2" src={images[0]} alt="Logo" className="h-10 w-10 rounded-full hover:opacity-80 transition-opacity" />
-            <span id="Header_3" className="text-white text-xl font-bold hover:text-blue-200 transition-colors">PropertyHub</span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div id="Header_4" className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link, index) => (
-              <Link
-                key={index}
-                to={link.path}
-                id={`Header_${index + 5}`}
-                className={`text-white hover:text-blue-200 transition-colors py-2 px-3 rounded-md ${location.pathname === link.path ? 'bg-blue-700' : ''}`}
-              >
-                {link.name}
-              </Link>
-            ))}
+          <div id="Header_2" className="flex items-center space-x-2">
+            <img src={images[0]} alt="Logo" className="h-10 w-10 rounded-full" />
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">YourBrand</span>
           </div>
 
-          {/* Mobile Menu Button */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link id="Header_3" to="/homepage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Home</Link>
+            <Link id="Header_4" to="/listingpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Listings</Link>
+            {isAuthenticated && (
+              <Link id="Header_5" to="/dashboardpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Dashboard</Link>
+            )}
+          </div>
+
+          <div className="hidden md:flex items-center space-x-4">
+            {!isAuthenticated ? (
+              <Link id="Header_6" to="/loginpage" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
+                Login
+              </Link>
+            ) : (
+              <button
+                id="Header_7"
+                onClick={handleLogout}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium"
+              >
+                Logout
+              </button>
+            )}
+          </div>
+
           <button
-            id="Header_11"
-            onClick={toggleMenu}
-            className="md:hidden text-white hover:text-blue-200 transition-colors"
+            id="Header_8"
+            className="md:hidden text-gray-700 hover:text-blue-600"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+              {isMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div id="Header_12" className="md:hidden mt-4 bg-blue-700 rounded-lg shadow-xl">
-            {navLinks.map((link, index) => (
-              <Link
-                key={index}
-                to={link.path}
-                id={`Header_${index + 13}`}
-                className={`block text-white hover:bg-blue-600 transition-colors py-2 px-4 ${location.pathname === link.path ? 'bg-blue-800' : ''}`}
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+        {isMenuOpen && (
+          <div id="Header_9" className="md:hidden mt-4 pb-4">
+            <div className="flex flex-col space-y-4">
+              <Link to="/homepage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Home</Link>
+              <Link to="/listingpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Listings</Link>
+              {isAuthenticated && (
+                <Link to="/dashboardpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Dashboard</Link>
+              )}
+              {!isAuthenticated ? (
+                <Link to="/loginpage" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Login</Link>
+              ) : (
+                <button
+                  onClick={handleLogout}
+                  className="text-left text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+                >
+                  Logout
+                </button>
+              )}
+            </div>
           </div>
         )}
       </nav>
