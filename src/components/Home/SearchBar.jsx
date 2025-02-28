@@ -1,75 +1,96 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function SearchBar() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
-  const [results, setResults] = useState([]);
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) return;
-    
-    setIsSearching(true);
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (searchTerm.trim() === '') {
+        setSuggestions([]);
+        return;
+      }
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/search/suggestions?q=${searchTerm}`);
+        const data = await response.json();
+        setSuggestions(data.suggestions);
+      } catch (error) {
+        console.error('Error fetching suggestions:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const debounceTimer = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(debounceTimer);
+  }, [searchTerm]);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch(`/api/search?query=${encodeURIComponent(searchQuery)}`);
+      const response = await fetch(`/api/search?q=${searchTerm}`);
       const data = await response.json();
-      setResults(data);
+      // Handle search results
     } catch (error) {
-      console.error('Search failed:', error);
-    } finally {
-      setIsSearching(false);
+      console.error('Error searching:', error);
     }
   };
 
   return (
-    <div id="SearchBar_1" className="w-full max-w-3xl mx-auto px-4 py-6">
-      <div className="relative flex items-center">
-        <input
-          id="SearchBar_2"
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search blog posts..."
-          className="w-full px-6 py-3 text-lg border-2 border-gray-200 rounded-full focus:outline-none focus:border-blue-500 transition-colors duration-200 bg-white shadow-sm hover:shadow-md"
-          onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-        />
-        <button
-          id="SearchBar_3"
-          onClick={handleSearch}
-          disabled={isSearching}
-          className="absolute right-3 p-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isSearching ? (
-            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-            </svg>
-          ) : (
-            <svg className="h-5 w-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          )}
-        </button>
-      </div>
-      
-      {results.length > 0 && (
-        <div id="SearchBar_4" className="mt-6 space-y-4">
-          {results.map((result) => (
-            <div
-              key={result.id}
-              className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200 cursor-pointer"
+    <div id="SearchBar_1" className="w-full max-w-2xl mx-auto px-4">
+      <form onSubmit={handleSearch} className="relative">
+        <div className="relative">
+          <input
+            id="SearchBar_2"
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search blog posts..."
+            className="w-full px-12 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:outline-none shadow-sm hover:shadow-md transition-all duration-300 bg-white text-gray-800 placeholder-gray-400"
+          />
+          <button
+            id="SearchBar_3"
+            type="submit"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors duration-200"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <h3 className="text-lg font-semibold text-gray-800">{result.title}</h3>
-              <p className="text-gray-600 mt-1">{result.excerpt}</p>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
+          {isLoading && (
+            <div id="SearchBar_4" className="absolute right-4 top-1/2 transform -translate-y-1/2">
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500" />
             </div>
-          ))}
+          )}
         </div>
-      )}
-      
-      {searchQuery && results.length === 0 && !isSearching && (
-        <div id="SearchBar_5" className="mt-6 text-center text-gray-600">
-          No results found for "{searchQuery}"
-        </div>
-      )}
+        {suggestions.length > 0 && (
+          <div id="SearchBar_5" className="absolute w-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200 max-h-60 overflow-y-auto z-50">
+            {suggestions.map((suggestion, index) => (
+              <button
+                key={index}
+                onClick={() => setSearchTerm(suggestion)}
+                className="w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors duration-150 text-gray-700 cursor-pointer"
+              >
+                {suggestion}
+              </button>
+            ))}
+          </div>
+        )}
+      </form>
     </div>
   );
-}
+};
+
+export default SearchBar;
