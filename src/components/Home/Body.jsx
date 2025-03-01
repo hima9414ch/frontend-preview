@@ -1,23 +1,23 @@
 import React from "react";
 
-import CategoryFilterDropdown from "./CategoryFilterDropdown";
 import SearchBar from "./SearchBar";
-import PostList from "./PostList";
-import PostSnippet from "./PostSnippet";
-import ResponsiveImage from "./ResponsiveImage";
-import SummaryText from "./SummaryText";
-import ReadMoreLink from "./ReadMoreLink";
+import FeaturedPropertiesCarousel from "./FeaturedPropertiesCarousel";
+import PropertyTeaserCards from "./PropertyTeaserCards";
+import QuickLinks from "./QuickLinks";
+import MapDisplay from "./MapDisplay";
+import PropertiesFilter from "./PropertiesFilter";
+import PropertyDetailsModal from "./PropertyDetailsModal";
 
 const Body = () => {
   return (
     <div>
-      <CategoryFilterDropdown />
       <SearchBar />
-      <PostList />
-      <PostSnippet />
-      <ResponsiveImage />
-      <SummaryText />
-      <ReadMoreLink />
+      <FeaturedPropertiesCarousel />
+      <PropertyTeaserCards />
+      <QuickLinks />
+      <MapDisplay />
+      <PropertiesFilter />
+      <PropertyDetailsModal />
     </div>
   );
 };
