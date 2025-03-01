@@ -1,79 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import images from '../assets/images';
 
 const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    navigate('/home');
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   return (
-    <header id="Header_1" className="bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg">
+    <header id="Header_1" className="fixed w-full top-0 bg-white/90 backdrop-blur-md shadow-lg z-50">
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-8">
-            <Link to="/home" className="text-2xl font-bold text-white hover:text-blue-200 transition duration-300" id="Header_2">
-              <img src={images[0]} alt="Logo" className="h-10 w-10 rounded-full" />
-            </Link>
-            <div className="hidden md:flex space-x-6" id="Header_3">
-              <Link to="/home" className="text-white hover:text-blue-200 font-medium transition duration-300 px-3 py-2 rounded-lg hover:bg-white/10">
-                Home
-              </Link>
-              {isAuthenticated && (
-                <Link to="/dashboard" className="text-white hover:text-blue-200 font-medium transition duration-300 px-3 py-2 rounded-lg hover:bg-white/10">
-                  Dashboard
-                </Link>
+          <Link to="/home" className="flex items-center space-x-2" id="Header_2">
+            <img src={images[0]} alt="Logo" className="h-10 w-10 rounded-full" />
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">RealEstate</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8" id="Header_3">
+            <Link to="/home" className="nav-link hover:text-blue-600 transition-colors duration-200">Home</Link>
+            <Link to="/propertydetails" className="nav-link hover:text-blue-600 transition-colors duration-200">Properties</Link>
+            <div className="relative">
+              <button
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                className="flex items-center space-x-1 hover:text-blue-600 transition-colors duration-200"
+                id="Header_4"
+              >
+                <span>Profile</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {isProfileOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50" id="Header_5">
+                  <Link to="/userprofile" className="block px-4 py-2 hover:bg-gray-100">My Profile</Link>
+                  <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">Sign Out</Link>
+                </div>
               )}
-              <Link to="/blogpost" className="text-white hover:text-blue-200 font-medium transition duration-300 px-3 py-2 rounded-lg hover:bg-white/10">
-                Blog Post
-              </Link>
             </div>
           </div>
 
-          <div className="flex items-center space-x-4" id="Header_4">
-            {isAuthenticated ? (
-              <div className="relative">
-                <button
-                  onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  className="flex items-center space-x-2 text-white hover:text-blue-200 transition duration-300"
-                >
-                  <img src={images[1]} alt="Profile" className="h-8 w-8 rounded-full" />
-                  <span className="hidden md:inline">My Profile</span>
-                </button>
-                {showProfileMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-10">
-                    <button
-                      onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="flex items-center space-x-4">
-                <Link
-                  to="/login"
-                  className="text-white hover:text-blue-200 font-medium transition duration-300 px-4 py-2 rounded-lg border border-white hover:bg-white/10"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="bg-white text-blue-600 font-medium transition duration-300 px-4 py-2 rounded-lg hover:bg-blue-100"
-                >
-                  Register
-                </Link>
-              </div>
-            )}
-          </div>
+          {/* Mobile Navigation Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            id="Header_6"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {isOpen && (
+          <div className="md:hidden mt-4 pb-4" id="Header_7">
+            <Link to="/home" className="block py-2 hover:text-blue-600 transition-colors duration-200">Home</Link>
+            <Link to="/propertydetails" className="block py-2 hover:text-blue-600 transition-colors duration-200">Properties</Link>
+            <Link to="/userprofile" className="block py-2 hover:text-blue-600 transition-colors duration-200">My Profile</Link>
+            <Link to="/login" className="block py-2 hover:text-blue-600 transition-colors duration-200">Sign Out</Link>
+          </div>
+        )}
       </nav>
     </header>
   );
