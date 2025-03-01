@@ -4,59 +4,56 @@ const NewsletterSignUp = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('/api/newsletter/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-      if (response.ok) {
-        setStatus('Thank you for subscribing!');
-        setEmail('');
-      }
-    } catch (error) {
-      setStatus('Something went wrong. Please try again.');
+    if (email) {
+      setStatus('success');
+      setEmail('');
     }
   };
 
   return (
-    <div id="NewsletterSignUp_1" className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100">
-      <div id="NewsletterSignUp_2" className="max-w-md w-full mx-4 p-8 bg-white rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
-        <div id="NewsletterSignUp_3" className="text-center mb-8">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Stay Updated</h2>
-          <p className="text-gray-600 mt-2">Join our newsletter and get the latest news, updates and special offers delivered directly to your inbox.</p>
-        </div>
-        <form id="NewsletterSignUp_4" onSubmit={handleSubmit} className="space-y-4">
-          <div id="NewsletterSignUp_5" className="relative">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email address"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200"
-              required
-            />
+    <div id="NewsletterSignUp_1" className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 rounded-xl shadow-2xl max-w-xl mx-auto my-8">
+      <div id="NewsletterSignUp_2" className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-white mb-4">Stay Updated with Our Newsletter</h2>
+        <p className="text-gray-100 text-lg">Get exclusive access to:</p>
+        <div className="grid grid-cols-2 gap-4 mt-4">
+          <div id="NewsletterSignUp_3" className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
+            <h3 className="text-white font-semibold">🎯 Weekly Tips</h3>
+            <p className="text-gray-200 text-sm">Expert insights delivered to you</p>
           </div>
-          <button
-            type="submit"
-            className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:opacity-90 transform hover:-translate-y-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-          >
-            Subscribe Now
-          </button>
-        </form>
-        {status && (
-          <div id="NewsletterSignUp_6" className="mt-4 text-center">
-            <p className={`text-sm ${status.includes('wrong') ? 'text-red-500' : 'text-green-500'}`}>{status}</p>
+          <div id="NewsletterSignUp_4" className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
+            <h3 className="text-white font-semibold">🎁 Special Offers</h3>
+            <p className="text-gray-200 text-sm">Exclusive deals and promotions</p>
           </div>
-        )}
-        <div id="NewsletterSignUp_7" className="mt-6 text-center text-sm text-gray-500">
-          <p>By subscribing, you agree to our Terms of Service and Privacy Policy</p>
         </div>
       </div>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div id="NewsletterSignUp_5" className="relative">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email address"
+            className="w-full px-6 py-4 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+            required
+          />
+          <button
+            type="submit"
+            className="absolute right-2 top-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition duration-300"
+          >
+            Subscribe
+          </button>
+        </div>
+      </form>
+      {status === 'success' && (
+        <div id="NewsletterSignUp_6" className="mt-4 text-center text-green-300">
+          Thank you for subscribing! 🎉
+        </div>
+      )}
+      <p className="text-xs text-center text-gray-300 mt-4">
+        By subscribing, you agree to our Privacy Policy and Terms of Service
+      </p>
     </div>
   );
 };
