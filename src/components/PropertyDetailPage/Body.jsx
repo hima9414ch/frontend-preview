@@ -1,17 +1,15 @@
 import React from "react";
 
-import PropertyGallery from "./PropertyGallery";
-import PropertyPrice from "./PropertyPrice";
-import PropertyDescription from "./PropertyDescription";
-import UserReviews from "./UserReviews";
+import PropertyPhotoGallery from "./PropertyPhotoGallery";
+import PropertyDetails from "./PropertyDetails";
+import BookingOrInquiryForm from "./BookingOrInquiryForm";
 
 const Body = () => {
   return (
     <div>
-      <PropertyGallery />
-      <PropertyPrice />
-      <PropertyDescription />
-      <UserReviews />
+      <PropertyPhotoGallery />
+      <PropertyDetails />
+      <BookingOrInquiryForm />
     </div>
   );
 };
