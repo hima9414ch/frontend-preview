@@ -1,22 +1,17 @@
 import React from "react";
-import UsernameField from "./UsernameField";
-import PasswordField from "./PasswordField";
-import RememberMeCheckbox from "./RememberMeCheckbox";
-import LoginButton from "./LoginButton";
-import ForgotPasswordLink from "./ForgotPasswordLink";
-import SocialLoginButtons from "./SocialLoginButtons";
-import SignUpLink from "./SignUpLink";
+
+import LoginForm from "./LoginForm";
+import PasswordVisibilityToggle from "./PasswordVisibilityToggle";
+import PasswordRecoveryLink from "./PasswordRecoveryLink";
+import RegistrationRedirectLink from "./RegistrationRedirectLink";
 
 const Body = () => {
   return (
     <div>
-      <UsernameField />
-      <PasswordField />
-      <RememberMeCheckbox />
-      <LoginButton />
-      <ForgotPasswordLink />
-      <SocialLoginButtons />
-      <SignUpLink />
+      <LoginForm />
+      <PasswordVisibilityToggle />
+      <PasswordRecoveryLink />
+      <RegistrationRedirectLink />
     </div>
   );
 };
