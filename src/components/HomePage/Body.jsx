@@ -1,23 +1,23 @@
 import React from "react";
 
+import PromotionalBanner from "./PromotionalBanner";
+import TopSellingProductsCarousel from "./TopSellingProductsCarousel";
+import ProductCategoriesList from "./ProductCategoriesList";
+import FeaturedProductsGrid from "./FeaturedProductsGrid";
 import SearchBar from "./SearchBar";
-import FeaturedPropertiesSection from "./FeaturedPropertiesSection";
-import RecentPropertiesList from "./RecentPropertiesList";
-import PropertyTypeFilter from "./PropertyTypeFilter";
-import PriceRangeFilter from "./PriceRangeFilter";
-import LocationFilter from "./LocationFilter";
-import CallToActionSection from "./CallToActionSection";
+import NewsletterSignUp from "./NewsletterSignUp";
+import DailyDealsSection from "./DailyDealsSection";
 
 const Body = () => {
   return (
     <div>
+      <PromotionalBanner />
+      <TopSellingProductsCarousel />
+      <ProductCategoriesList />
+      <FeaturedProductsGrid />
       <SearchBar />
-      <FeaturedPropertiesSection />
-      <RecentPropertiesList />
-      <PropertyTypeFilter />
-      <PriceRangeFilter />
-      <LocationFilter />
-      <CallToActionSection />
+      <NewsletterSignUp />
+      <DailyDealsSection />
     </div>
   );
 };
